@@ -1,5 +1,6 @@
 package com.example.testcalc;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -69,6 +70,11 @@ public class FuelCalculator extends AppCompatActivity {
         String amount = editTextValueAmount.getText().toString();
         String mj = editTextValueMj.getText().toString();
 
+        String latestDate = getLatestDateFromCSV();
+
+        if (date.compareTo(latestDate) <= 0) {
+            return;
+        } StringBuilder csvString = new StringBuilder();
         String csvData = date + ',' + odo + ',' + amount + ',' + mj + '\n';
         System.out.println(csvData);
 
@@ -77,6 +83,7 @@ public class FuelCalculator extends AppCompatActivity {
             System.out.println(dir);
             File file = new File(dir, "data.csv");
             FileWriter csvWriter = new FileWriter(file, true);
+
             csvWriter.append(csvData);
             csvWriter.flush();
             csvWriter.close();
@@ -125,23 +132,4 @@ public class FuelCalculator extends AppCompatActivity {
         return latestDate;
     }
 
-    private void writeVariablesToCSV(String date, String var1, String var2) {
-        String latestDate = getLatestDateFromCSV();
-
-        if (date.compareTo(latestDate) <= 0) {
-            return;
-        } StringBuilder csvString = new StringBuilder();
-        csvString.append(date).append(",").append(var1).append(",").append(var2).append("\n");
-
-        try {
-            File dir = getApplicationContext().getFilesDir();
-            File file = new File(dir, "data.csv");
-            FileWriter writer = new FileWriter(file, true);
-            writer.append(csvString.toString());
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
