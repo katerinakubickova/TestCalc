@@ -16,6 +16,9 @@
         android:theme="@style/Theme.TestCalc"
         tools:targetApi="31">
         <activity
+            android:name=".SideDishCalculator"
+            android:exported="false" />
+        <activity
             android:name=".testCsv"
             android:exported="false" />
         <activity

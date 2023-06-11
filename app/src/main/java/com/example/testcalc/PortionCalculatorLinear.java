@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 public class PortionCalculatorLinear extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +40,9 @@ public class PortionCalculatorLinear extends AppCompatActivity {
                 float weightSum = Float.parseFloat(String.valueOf(editTextWeightBrutto.getText()));
                 float weightPot = Float.parseFloat(String.valueOf(editTextWeightPot.getText()));
                 float countPortion = Float.parseFloat(String.valueOf(editTextCount.getText()));
-                float weightFood = weightSum - weightPot;
-                float myPortion = weightFood / 10 * 4 / countPortion;
-                float martinPortion = weightFood / 10 * 6 / countPortion;
+                float weightFood = Calculate.calculateFood(weightSum, weightPot);
+                float myPortion = Calculate.calculatePortionKaca(weightFood, countPortion);
+                float martinPortion = Calculate.calculatePortionMarta(weightFood, countPortion);
                 textViewWeightFood.setText(String.valueOf(weightFood));
                 textViewMyPortion.setText(String.valueOf(myPortion));
                 textViewMartinPortion.setText(String.valueOf(martinPortion));

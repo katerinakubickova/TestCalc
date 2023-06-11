@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="40px"
+    android:orientation="vertical"
+    tools:context=".PortionCalculatorLinear">
+
+    <Button
+        android:id="@+id/button_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HOME"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/sdc_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="true"
+        android:text="Side Dish Calculator"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/sdc_text_whole_dry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:text="Váha přílohy v suchém stavu" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sdc_edittext_whole_dry"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:hint="Zadej suchou váhu" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/sdc_text_one_dry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginTop="20px"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:text="Váha 1 z porcí v suchém stavu" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sdc_edittext_one_dry"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:inputType="number"
+            android:hint="Zadej váhu 1 z porcí" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/sdc_text_brutto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginTop="20px"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:text="Zadej váhu uvařené přílohy i s nádobou" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sdc_edittext_brutto"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:inputType="number"
+            android:hint="Zadej celkovou váhu" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/sdc_text_weight_pot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginTop="20px"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:text="Zadej váhu nádoby" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sdc_edittext_weight_pot"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:inputType="number"
+            android:hint="Zadej váhu nádoby" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_calculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:text="Spočítat"
+        android:textSize="20dp"
+        android:layout_gravity="center"        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/sdc_res_text_brutto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Celková hmotnost přílohy: " />
+
+        <EditText
+            android:id="@+id/sdc_res_value_brutto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:ems="10"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/sdc_res_text_one_said_boiled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Váha požadované uvařené porce: " />
+
+        <EditText
+            android:id="@+id/sdc_res_value_one_said_boiled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:ems="10"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/sdc_res_text_residue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:ems="10"
+            android:inputType="text"
+            android:text="Zbytek přílohy " />
+
+        <EditText
+            android:id="@+id/sdc_res_value_residue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:ems="10"
+            android:inputType="text" />
+    </LinearLayout>
+
+
+</LinearLayout>

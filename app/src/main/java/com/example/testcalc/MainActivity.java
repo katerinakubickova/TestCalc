@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button buttonPortions = findViewById(R.id.button_portions);
         Button buttonFuel = findViewById(R.id.button_fuel);
-
+        Button buttonSideDish = findViewById(R.id.button_side_dish);
         buttonPortions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,6 +33,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, FuelCalculator.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonSideDish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SideDishCalculator.class);
                 startActivity(intent);
             }
         });

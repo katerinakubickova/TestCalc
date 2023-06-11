@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -41,6 +42,11 @@ public class FuelCalculator extends AppCompatActivity {
         editTextValueAmount = findViewById(R.id.value_amount);
         editTextValueMj = findViewById(R.id.value_mj);
 
+
+        TextView textViewValueConsuptionShort = findViewById(R.id.valueConsuptionShort);
+
+        double consuptionLong = calculateConsuptionLong();
+
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,9 +63,12 @@ public class FuelCalculator extends AppCompatActivity {
         });
 
         buttonSpocitat.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 saveData(this);
+                TextView textViewValueConsuptionLong = findViewById(R.id.valueConsuptionLong);
+                textViewValueConsuptionLong.setText(String.valueOf(consuptionLong));
             }
         });
 
@@ -83,7 +92,6 @@ public class FuelCalculator extends AppCompatActivity {
             System.out.println(dir);
             File file = new File(dir, "data.csv");
             FileWriter csvWriter = new FileWriter(file, true);
-
             csvWriter.append(csvData);
             csvWriter.flush();
             csvWriter.close();
@@ -94,6 +102,38 @@ public class FuelCalculator extends AppCompatActivity {
             Toast.makeText(this, "Failed to save data", Toast.LENGTH_SHORT).show();
             System.out.println("Failed to save data");
         }
+    }
+
+    public double calculateConsuptionLong() {
+        try {
+            File dir = getApplicationContext().getFilesDir();
+            File file = new File(dir, "data.csv");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            double oldestOdo = 0.0;
+            double newestOdo = 0.0;
+            int count = 0;
+
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+                if (fields.length >= 2) {
+                    double valueOdo = Double.parseDouble(fields[1]);
+
+                    if (count == 0) {
+                        oldestOdo = valueOdo;
+                    }
+                    newestOdo = valueOdo;
+                    count++;
+                }
+            }
+            reader.close();
+
+            if (count > 2) {
+                return newestOdo - oldestOdo;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } return 0.0;
     }
 
     private void openDialog() {
