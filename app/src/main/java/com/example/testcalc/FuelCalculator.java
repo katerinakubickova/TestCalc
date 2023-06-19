@@ -20,6 +20,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Calendar;
 
 public class FuelCalculator extends AppCompatActivity {
 
@@ -28,14 +31,16 @@ public class FuelCalculator extends AppCompatActivity {
     private EditText editTextValueAmount;
     private EditText editTextValueMj;
     Context context;
-
+    Calendar calendar = Calendar.getInstance();
+    String fileName = "TestCSVFile5.csv";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fuel_calculator);
         Button buttonHome = findViewById(R.id.button_home);
         Button buttonDate = findViewById(R.id.button_date);
-        Button buttonSpocitat = findViewById(R.id.button_calculate);
+        Button buttonCalculate = findViewById(R.id.button_calculate);
+        Button buttonSave = findViewById(R.id.button_save);
 
         editTextValueDate = findViewById(R.id.value_date);
         editTextValueOdo = findViewById(R.id.value_odo);
@@ -62,16 +67,50 @@ public class FuelCalculator extends AppCompatActivity {
             }
         });
 
-        buttonSpocitat.setOnClickListener(new View.OnClickListener() {
+        buttonCalculate.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                saveData(this);
                 TextView textViewValueConsuptionLong = findViewById(R.id.valueConsuptionLong);
                 textViewValueConsuptionLong.setText(String.valueOf(consuptionLong));
             }
         });
 
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                ManipulateCSV manipulateCSV = new ManipulateCSV();
+                File filesDir = getFilesDir();
+
+                String date = editTextValueDate.getText().toString();
+                String odo = editTextValueOdo.getText().toString();
+                String amount = editTextValueAmount.getText().toString();
+                String mj = editTextValueMj.getText().toString();
+
+                String combinedData = date + ',' + odo + ',' + amount + ',' + mj + '\n';
+
+                manipulateCSV.saveDataToCSV(combinedData, fileName, filesDir);
+                    //saveData(this);
+                    //ManipulateCSV.saveDataToCSV(file, data);
+                }
+        });
+
+    }
+
+    private void writeToFile(String combinedData) {
+        try {
+            File csvFile = new File(getFilesDir(), fileName);
+            FileWriter writer = new FileWriter(csvFile, true);
+
+            writer.append(combinedData);
+
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void saveData(View.OnClickListener view) {
         String date = editTextValueDate.getText().toString();
@@ -90,7 +129,7 @@ public class FuelCalculator extends AppCompatActivity {
         try {
             File dir = getApplicationContext().getFilesDir();
             System.out.println(dir);
-            File file = new File(dir, "data.csv");
+            File file = new File(dir, fileName);
             FileWriter csvWriter = new FileWriter(file, true);
             csvWriter.append(csvData);
             csvWriter.flush();
@@ -107,7 +146,7 @@ public class FuelCalculator extends AppCompatActivity {
     public double calculateConsuptionLong() {
         try {
             File dir = getApplicationContext().getFilesDir();
-            File file = new File(dir, "data.csv");
+            File file = new File(dir, fileName);
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
             double oldestOdo = 0.0;
@@ -137,13 +176,16 @@ public class FuelCalculator extends AppCompatActivity {
     }
 
     private void openDialog() {
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH);
+        int year = calendar.get(Calendar.YEAR);
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                editTextValueDate.setText(String.valueOf(i)+"."+String.valueOf(i1)+"."+String.valueOf(i2));
+                editTextValueDate.setText(String.valueOf(i)+"."+String.valueOf(i1 +1)+"."+String.valueOf(i2));
 
             }
-        }, 2023, 5, 10);
+        }, year, month, day);
         dialog.show();
     }
 
@@ -152,7 +194,7 @@ public class FuelCalculator extends AppCompatActivity {
 
         try {
             File dir = getApplicationContext().getFilesDir();
-            File file = new File(dir, "data.csv");
+            File file = new File(dir, fileName);
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
 

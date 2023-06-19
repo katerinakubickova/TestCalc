@@ -34,13 +34,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:textSize="20dp"
-            android:text="Datum: "/>
+            android:text="Date: "/>
 
         <Button
             android:id="@+id/button_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vyber datum" />
+            android:text="Enter date" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/value_date"
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.7"
         android:textSize="20dp"
-        android:text="Stav odometru: "/>
+        android:text="Odometer counter: "/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/value_odo"
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
             android:textSize="20dp"
-            android:text="Množství paliva: "/>
+            android:text="Amount of refuelded fuel: "/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/value_amount"
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
             android:textSize="20dp"
-            android:text="Cena za litr: "/>
+            android:text="Price per liter: "/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/value_mj"
@@ -115,11 +115,19 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/button_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:layout_gravity="right" />
+
+    <Button
         android:id="@+id/button_calculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Spočítat"
+        android:text="Calculate"
         android:layout_gravity="right" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -134,7 +142,7 @@
             android:paddingVertical="5dp"
             android:inputType="textMultiLine"
             android:textSize="20dp"
-            android:text="Průměrná spotřeba dlouhodobá: "/>
+            android:text="Average consuption since the last refueling: "/>
 
         <EditText
             android:id="@+id/valueConsuptionLong"
@@ -157,7 +165,7 @@
             android:paddingVertical="5dp"
             android:inputType="textMultiLine"
             android:textSize="20dp"
-            android:text="Průměrná spotřeba od posledního tankování: "/>
+            android:text="Average long-term consuption: "/>
 
         <EditText
             android:id="@+id/valueConsuptionShort"

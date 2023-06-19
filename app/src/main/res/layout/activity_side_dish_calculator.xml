@@ -36,7 +36,7 @@
             android:layout_weight="0.5"
             android:ems="10"
             android:inputType="textMultiLine"
-            android:text="Váha přílohy v suchém stavu" />
+            android:text="Dry weight of whole side dish" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sdc_edittext_whole_dry"
@@ -44,7 +44,7 @@
             android:layout_weight="0.5"
             android:layout_height="match_parent"
             android:inputType="number"
-            android:hint="Zadej suchou váhu" />
+            android:hint="Enter weight of whole side dish" />
     </LinearLayout>
 
     <LinearLayout
@@ -59,7 +59,7 @@
             android:layout_marginTop="20px"
             android:ems="10"
             android:inputType="textMultiLine"
-            android:text="Váha 1 z porcí v suchém stavu" />
+            android:text="Weight of one portion" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sdc_edittext_one_dry"
@@ -67,7 +67,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:inputType="number"
-            android:hint="Zadej váhu 1 z porcí" />
+            android:hint="Enter weight of one portion" />
     </LinearLayout>
 
     <LinearLayout
@@ -82,7 +82,7 @@
             android:layout_marginTop="20px"
             android:ems="10"
             android:inputType="textMultiLine"
-            android:text="Zadej váhu uvařené přílohy i s nádobou" />
+            android:text="Total weight after cooking (container + contain)" />
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -91,7 +91,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:inputType="number"
-            android:hint="Zadej celkovou váhu" />
+            android:hint="Enter total weight" />
     </LinearLayout>
 
     <LinearLayout
@@ -106,7 +106,7 @@
             android:layout_marginTop="20px"
             android:ems="10"
             android:inputType="textMultiLine"
-            android:text="Zadej váhu nádoby" />
+            android:text="Weight of container" />
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -115,7 +115,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:inputType="number"
-            android:hint="Zadej váhu nádoby" />
+            android:hint="Enter weight of container" />
     </LinearLayout>
 
     <Button
@@ -123,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20px"
-        android:text="Spočítat"
+        android:text="Calculate"
         android:textSize="20dp"
         android:layout_gravity="center"        />
 
@@ -139,7 +139,7 @@
             android:layout_weight="0.6"
             android:ems="10"
             android:inputType="text"
-            android:text="Celková hmotnost přílohy: " />
+            android:text="Total weight after cooking" />
 
         <EditText
             android:id="@+id/sdc_res_value_brutto"
@@ -162,7 +162,7 @@
             android:layout_weight="0.6"
             android:ems="10"
             android:inputType="text"
-            android:text="Váha požadované uvařené porce: " />
+            android:text="Weight of requested portion: " />
 
         <EditText
             android:id="@+id/sdc_res_value_one_said_boiled"
@@ -185,7 +185,7 @@
             android:layout_weight="0.6"
             android:ems="10"
             android:inputType="text"
-            android:text="Zbytek přílohy " />
+            android:text="Weight of residue side dish " />
 
         <EditText
             android:id="@+id/sdc_res_value_residue"

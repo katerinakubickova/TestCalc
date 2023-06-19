@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ManipulateCSV manipulateCSV = new ManipulateCSV();
+
+        manipulateCSV.testSorting();
+
     }
 
 }
