@@ -60,6 +60,7 @@ public class ManipulateCSV extends AppCompatActivity {
 
     public void saveDataToCSV(String combinedData, String fileName, File filesDir) {
         try {
+
             File csvFile = new File(filesDir, fileName);
             FileWriter writer = new FileWriter(csvFile, true);
 
@@ -77,14 +78,14 @@ public class ManipulateCSV extends AppCompatActivity {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     private String filePath;
-    private SimpleDateFormat dateFormat;
+    SimpleDateFormat dateFormat;
     public void CSVManipulator(String filePath) {
         this.filePath = filePath;
-        this.dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        this.dateFormat = new SimpleDateFormat("yyyy.MM.dd");
     }
 
     public void readAndSortData() throws IOException, CsvException {
-        //Read data from CSV file
+        //Read data from CSV file and sort data by date
         try {
 
             CSVReader reader = new CSVReader(new FileReader(filePath));
@@ -92,8 +93,8 @@ public class ManipulateCSV extends AppCompatActivity {
             reader.close();
 
             //Exclude the header row before sorting
-            List<String[]> header = data.stream().limit(1).collect(Collectors.toList());
-            List<String[]> rows = data.stream().skip(1).collect(Collectors.toList());
+            //List<String[]> header = data.stream().limit(1).collect(Collectors.toList());
+            List<String[]> rows = data.stream().collect(Collectors.toList());
 
             //Sort the rows based on the first column
             rows.sort(Comparator.comparing(row -> {
@@ -108,7 +109,7 @@ public class ManipulateCSV extends AppCompatActivity {
             }));
 
             //Include the header row again after sorting
-            rows.addAll(0, header);
+            //rows.addAll(0, header);
 
             //Write the sorted data back to CSV and don't add doublequotes to the every records
             CSVWriter writer = new CSVWriter(new FileWriter(filePath), CSVWriter.DEFAULT_SEPARATOR, '\0', CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);

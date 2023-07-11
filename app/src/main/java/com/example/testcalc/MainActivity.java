@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
+        dataManipulator.dateFormating("2023.6.2");
+        dataManipulator.formatingDate("2023.7.1");
 
     }
 

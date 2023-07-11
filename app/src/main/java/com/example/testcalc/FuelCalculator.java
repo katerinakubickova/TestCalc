@@ -15,11 +15,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.opencsv.exceptions.CsvException;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Calendar;
@@ -32,7 +35,7 @@ public class FuelCalculator extends AppCompatActivity {
     private EditText editTextValueMj;
     Context context;
     Calendar calendar = Calendar.getInstance();
-    String fileName = "TestCSVFile5.csv";
+    String fileName = "TestCSVFile.csv";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,8 @@ public class FuelCalculator extends AppCompatActivity {
         editTextValueOdo = findViewById(R.id.value_odo);
         editTextValueAmount = findViewById(R.id.value_amount);
         editTextValueMj = findViewById(R.id.value_mj);
+
+        DataManipulator dataManipulator = new DataManipulator();
 
 
         TextView textViewValueConsuptionShort = findViewById(R.id.valueConsuptionShort);
@@ -83,16 +88,28 @@ public class FuelCalculator extends AppCompatActivity {
 
                 ManipulateCSV manipulateCSV = new ManipulateCSV();
                 File filesDir = getFilesDir();
+                manipulateCSV.CSVManipulator("/data/data/com.example.testcalc/files/TestCSVFile.csv");
+
 
                 String date = editTextValueDate.getText().toString();
                 String odo = editTextValueOdo.getText().toString();
                 String amount = editTextValueAmount.getText().toString();
                 String mj = editTextValueMj.getText().toString();
 
-                String combinedData = date + ',' + odo + ',' + amount + ',' + mj + '\n';
+                System.out.println("Date1: " + date);
+
+                String combinedData =  date + ',' + odo + ',' + amount + ',' + mj + '\n';
+                System.out.println("Combined Data: " + combinedData);
 
                 manipulateCSV.saveDataToCSV(combinedData, fileName, filesDir);
-                    //saveData(this);
+                try {
+                    manipulateCSV.readAndSortData();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (CsvException e) {
+                    throw new RuntimeException(e);
+                }
+                //saveData(this);
                     //ManipulateCSV.saveDataToCSV(file, data);
                 }
         });
